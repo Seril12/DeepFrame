@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import cardData from "./CardData";
 import Card from "./Card";
 
 const Search = ({ query, setQuery }) => {
   const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
-
-  const startListening = () => {
+  useEffect(() => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -15,28 +15,32 @@ const Search = ({ query, setQuery }) => {
       return;
     }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-IN";
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+    recognitionRef.current = new SpeechRecognition();
+    recognitionRef.current.lang = "en-IN";
+    recognitionRef.current.interimResults = false;
+    recognitionRef.current.maxAlternatives = 1;
 
-    setIsListening(true);
-    recognition.start();
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
-    recognition.onresult = (event) => {
+    recognitionRef.current.onresult = (event) => {
       const spokenText = event.results[0][0].transcript;
       const cleaned = spokenText.trim().replace(/\.$/, "");
       setQuery(cleaned);
     };
 
-    recognition.onerror = (event) => {
-      console.log("Speech recognition error:", event.error);
+    recognitionRef.current.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
       setIsListening(false);
     };
+
+    recognitionRef.current.onend = () => {
+      setIsListening(false);
+    };
+  }, [setQuery]);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      setIsListening(true);
+      recognitionRef.current.start();
+    }
   };
 
   const filteredData = cardData.filter((item) =>
@@ -53,16 +57,27 @@ const Search = ({ query, setQuery }) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-
-
         <span className="material-symbols-outlined search-icon">search</span>
+        
+  <div className="mic-container">
+        <span
+          onClick={startListening}
+          className={`material-symbols-outlined mic-icon ${
+            isListening ? "listening" : ""
+          }`}
+          style={{ cursor: "pointer", marginLeft: "10px" }}
+        >
+          mic
+        </span>
       </div>
-                <button onClick={startListening} >
-          <span className="material-symbols-outlined mic-icon">mic</span>
-        </button>
+
       {isListening && (
-        <p style={{ color: "red", marginLeft: "650px" }}>Listening...</p>
+        <div className="listening-bubble">
+          <span className="dot"></span>
+          Listening...
+        </div>
       )}
+      </div>
 
       <div className="card-container">
         {filteredData.length === 0 ? (
@@ -79,9 +94,16 @@ const Search = ({ query, setQuery }) => {
             />
           ))
         )}
-
-
       </div>
+<footer className="footer">
+  <p>&copy; 2025 DeepFrame</p>
+
+  <div className="footer-links">
+    <a href="https://github.com/Seril12" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/seril-evanjaline-s-9811b6328" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:serilevanjalines.it2024@citchennai.net">Email</a>
+  </div>
+</footer>
     </>
   );
 };
