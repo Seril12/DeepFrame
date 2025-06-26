@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        .form{
+            margin-top:10%;
+            margin-left:500px;
+            width:270px;
+            height:250px;
+            border:none;
+            border-radius: 10px;
+            display: grid;
+            background: linear-gradient(90deg, #a4ebd5, #f7d9d9);
+            justify-content: center;
+            align-items: center;
+            cursor:pointer;
+            padding-top:15px;
+            padding-bottom: 15px;
+        }
+        body{
+        color:white;
+        background-color: black;
+        }
+        #input{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #303030;
+            padding: 5px;
+            color:rgb(54, 54, 54);
+            background-color: white;
+            border:none;
+            outline:none;
+            width:200px;
+            border-radius: 7px;
+        }
+        #label1{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-right: 20px;
+        }
+        #label2{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-right: 23px;
+        }
+        button{
+            background-color: #303030;
+            color:white;
+            border:none;
+            padding: 9px;
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-radius: 25px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+   <form  class="form" action="/login" method="POST">
+    <label for="username" id="label1">Username </label>
+    <input  id ="input" type="text" name="username" placeholder="Enter username" required/><br/><br/>
+    <label for="password" id="label2">Password </label>
+    <input id ="input" type="password" name="password" placeholder="Enter password" required/><br/><br/>
+    <button  type="submit">Login</button>
+   </form> 
+</body>
+</html>
