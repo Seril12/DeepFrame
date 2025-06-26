@@ -9,17 +9,134 @@
     body{
         background-color: black;
     }
+    h2{
+        color:#ff0066;
+        font-family: r;
+    }
+    p{
+        color:white;
+        text-align: left;
+        
+    }
+    aside{
+        color: white;
+        margin-top:50px;
+        
+    }
+    input{
+        border:none;
+        background-color: #ffffff;
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        outline: none;;
+        padding:7px;
+        border-radius:5px;
+         box-shadow: #ffffff 0px 0px 10px;
+    }
+    button{
+        padding:7px;
+        border:none;
+        margin-left: 10px;
+        border-radius:5px;
+        background-color: #ffffff;
+        cursor: pointer;
+        transform: scale(1.05) ;
+        box-shadow: #ffffff 0px 0px 10px;
+        transition: all 0.3s ease-in-out;
+    }
+    button:hover{
+        transform: scale(1.1);
+        background-color: #ff0066;
+        box-shadow: #ff0066 0px 0px 10px;
+    }
 </style>
 <body>
-    <iframe
+<iframe
   width="1240"
-  height="570"
-   src="https://www.youtube.com/embed/krfcq5pF8u8"
+  height="480"
+  src="https://www.youtube.com/embed/krfcq5pF8u8"
   title="13th"
-  frameBorder="100"
+  frameborder="100"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowFullScreen
-></iframe>
+></iframe> 
+ <h2>13th</h2>
+    <p><strong style="color:#ff0066;">Genre:</strong> <br/>Documentary</p>
+    <p><strong style="color:#ff0066;">Description:</strong> <br/>13th explores how the 13th Amendment led to mass incarceration and racial injustice in the U.S. It shows the link between race, politics, and the prison system.</p>
+        <aside>
+    <button onclick="toggleLike('doc1')" id="like-doc1">🤍</button>
+            <span id="like-count-doc1">0</span> likes
+            <br/><br/>
+            <div class="comments">
+      <input type="text" id="comment-input-doc1" placeholder="Write a comment...">
+      <button onclick="postComment('doc1')">Post</button>
+      <ul id="comment-list-doc1"></ul>
+    </div>
+    </aside>
+    <div class="video-page">
+<script>
+ 
+  function toggleLike(docId) {
+    let likeData = JSON.parse(localStorage.getItem("likeData") || "{}");
 
+    if (!likeData[docId]) {
+      likeData[docId] = { liked: false, count: 0 };
+    }
+
+    if (likeData[docId].liked) {
+      likeData[docId].liked = false;
+      likeData[docId].count -= 1;
+    } else {
+      likeData[docId].liked = true;
+      likeData[docId].count += 1;
+    }
+
+    localStorage.setItem("likeData", JSON.stringify(likeData));
+    updateLikeDisplay(docId);
+  }
+
+  function updateLikeDisplay(docId) {
+    const likeData = JSON.parse(localStorage.getItem("likeData") || "{}");
+    const data = likeData[docId] || { liked: false, count: 0 };
+
+    document.getElementById(`like-${docId}`).innerText = data.liked ? "❤️" : "🤍";
+    document.getElementById(`like-count-${docId}`).innerText = data.count;
+  }
+
+  updateLikeDisplay("doc1");
+
+  function postComment(docId) {
+    const input = document.getElementById(`comment-input-${docId}`);
+    const comment = input.value.trim();
+    if (!comment) return;
+
+    let comments = JSON.parse(localStorage.getItem("comments") || "{}");
+    if (!comments[docId]) {
+      comments[docId] = [];
+    }
+
+    comments[docId].push(comment);
+    localStorage.setItem("comments", JSON.stringify(comments));
+    input.value = "";
+    renderComments(docId);
+  }
+
+  function renderComments(docId) {
+    const list = document.getElementById(`comment-list-${docId}`);
+    list.innerHTML = "";
+
+    const comments = JSON.parse(localStorage.getItem("comments") || "{}")[docId] || [];
+
+    comments.forEach(c => {
+      const li = document.createElement("li");
+      li.textContent = c;
+      list.appendChild(li);
+    });
+  }
+
+  
+  renderComments("doc1");
+</script>
+</div>
 </body>
 </html>

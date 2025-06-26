@@ -59,6 +59,7 @@ const Search = ({ query, setQuery }) => {
         />
         <span className="material-symbols-outlined search-icon">search</span>
         
+        
   <div className="mic-container">
         <span
           onClick={startListening}
@@ -77,8 +78,8 @@ const Search = ({ query, setQuery }) => {
           Listening...
         </div>
       )}
-      </div>
-
+      
+</div>
       <div className="card-container">
         {filteredData.length === 0 ? (
           <p>No results found.</p>

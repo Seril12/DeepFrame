@@ -1,4 +1,4 @@
-body{
+ body{
   background-color:#000000; ;
 }
 .search-container{
@@ -12,15 +12,16 @@ body{
   position: absolute;
   top:32px;
   left: 30px;
-  
 }
 #input{
   border:none;
-  border-color: #ffffff;
-  box-shadow:0 0 10px rgba(255, 255, 255, 0.99);
   width:300px;
   padding:7px;
-  
+  color:#ff0066;
+  background-color: #ffffff;
+  box-shadow: #ffffff 0px 0px 10px;
+  transform: scale(1.05) ;
+  transition: all 0.3s ease-in-out;
   border-top-left-radius:7px;
   border-bottom-left-radius:7px;
   outline:none;
@@ -51,34 +52,40 @@ body{
   right: 400px;
 }
 .material-symbols-outlined.mic-icon:hover{
-  box-shadow:0 0 15px rgba(255, 255, 255, 0.99);
+  cursor: pointer;
+  background-color: #ff0066;
+  box-shadow: #ff0066 0px 0px 10px;
   transform: scale(1.05) ;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
 }
 .material-symbols-outlined.home-icon:hover{
-  box-shadow:0 0 15px rgba(255, 255, 255, 0.99);
+  background-color: #ff0066;
+  box-shadow: #ff0066 0px 0px 10px;
   transform: scale(1.05) ;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+.material-symbols-outlined.search-icon:hover{
+   background-color: #ff0066;
+  box-shadow: #ff0066 0px 0px 10px;
+  transform: scale(1.05) ;
+}
 .material-symbols-outlined.search-icon{
-   box-shadow:0 0 15px rgba(255, 255, 255, 0.99); ;
-  border-color:#ffffff;
-  background-color: #ffffff;
     border-top-right-radius:7px;
   border-bottom-right-radius:7px;
   padding:7px;
+  background-color: #ffffff;
+  box-shadow: #ffffff 0px 0px 10px;
+  transform: scale(1.05) ;
   cursor: pointer;
 }
 .link{
 text-decoration: none;
 }
-.card {
-  border: 1px solid rgba(72, 67, 67, 0.196);
+.card { 
   border-radius: 9px;
-  box-shadow: 0 0 10px rgba(88, 88, 88, 0.99);
-  background-color:#0a0a0a7f;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.895);
+  background-color:#080707a9;
   padding: 20px;
   margin: 20px;
   width: 300px;
@@ -94,12 +101,21 @@ text-decoration: none;
   align-items: flex-start;
   gap: 20px;
 }
-
+.card:hover h2,
+.card:hover h3,
+.card:hover p {
+  color: #ff0066;
+  transition: all 0.3s ease-in-out;
+  font-weight: 10px;
+}
 .card:hover {
-  box-shadow: 0 0 20px lch(100% 0.01 296.81 / 0.7);
-   background-color: #050404;
+  /* box-shadow: 0 0 20px lch(67.74% 0.01 296.81 / 0.7); */
+   background-color: #000000 ;
   cursor: pointer;
+   color: #ff0066;
+  font-weight: 10px;
   transform: scale(1.05);
+    box-shadow: #ff0066 0px 0px 10px;
 }
 
 .card--image {
@@ -112,6 +128,7 @@ text-decoration: none;
 .card h3,
 .card p {
   color: #ffffff;
+  font-weight: 30px;
   text-align: left;
 }
 
@@ -159,10 +176,10 @@ text-decoration: none;
   text-align: center;
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
-  background-color: #111111;
+  background-color: #000000;
   font-size: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 -2px 15px rgb(255, 255, 255);
 }
 
 .footer p {
@@ -186,15 +203,22 @@ text-decoration: none;
   border-radius: 5px;
   transition: all 0.3s ease;
   border: 1px solid transparent;
-  box-shadow: 0 0 8px rgba(255, 251, 253, 0.566);
+  box-shadow: 0 0 8px rgb(255, 255, 255);
 }
 
 .footer a:hover {
   transform: scale(1.1);
-  color: #ef1565;
-  box-shadow: 0 0 12px rgba(255, 40, 98, 0.6);
+  color: #ff0066;
+  box-shadow: 0 0 12px rgb(255, 0, 68);
 }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
+} 
+
+
+
+
+
+
+
